@@ -19,4 +19,10 @@ fi
 echo "${MACHINE_HOSTNAME}" > /etc/hostname
 sed --in-place -e 's/^\(127.0.1.1\)\s\+\([-a-z0-9.]*\)/\1 '"${MACHINE_HOSTNAME}"'/' /etc/hosts
 
+#
+# Create directory structure
+#
+
+mkdir ~/bin
+
 exit 0
