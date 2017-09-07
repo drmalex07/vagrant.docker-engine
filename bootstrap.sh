@@ -5,7 +5,7 @@
 #
 
 apt-get update
-apt-get install -y vim bash-completion sudo curl htop tree bzip2 p7zip-full
+apt-get install -y vim bash-completion sudo curl htop tree jq screen bzip2 p7zip-full
 
 #
 # Set hostname
