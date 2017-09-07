@@ -17,12 +17,19 @@ if [ -z "${MACHINE_HOSTNAME}" ]; then
 fi
 
 echo "${MACHINE_HOSTNAME}" > /etc/hostname
-sed --in-place -e 's/^\(127.0.1.1\)\s\+\([-a-z0-9.]*\)/\1 '"${MACHINE_HOSTNAME}"'/' /etc/hosts
+sed -i -e 's/^\(127.0.1.1\)\s\+\([-a-z0-9.]*\)/\1 '"${MACHINE_HOSTNAME}"'/' /etc/hosts
 
 #
 # Create directory structure
 #
 
-mkdir ~/bin
+sudo -u vagrant mkdir ~vagrant/bin
+
+
+#
+# Enable cgroups and memory-swapiness on boot parameters
+#
+
+sed -i -e 's/\(GRUB_CMDLINE_LINUX_DEFAULT\)=.*$/\1="quiet cgroup_enable=memory swapaccount=1"/' /etc/default/grub
 
 exit 0
