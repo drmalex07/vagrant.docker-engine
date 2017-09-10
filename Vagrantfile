@@ -40,23 +40,19 @@ Vagrant.configure(2) do |config|
   #
 
   config.vm.provision "file", source: "profile", destination: ".profile"
-  config.vm.provision "file", source: "~/.bashrc", destination: ".bashrc"
+  config.vm.provision "file", source: "bashrc", destination: ".bashrc"
+  
   config.vm.provision "file", source: "~/.vimrc", destination: ".vimrc"
   config.vm.provision "file", source: "~/.vim/", destination: "."
 
-  config.vm.provision "shell" do |script| 
-    script.path = "bootstrap.sh" 
-    script.env = {:MACHINE_HOSTNAME => machine_hostname}
+  config.vm.provision "shell", path: "install-ansible-prereqs.sh"
+  config.vm.provision "ansible" do |a| 
+    a.playbook = 'play.yml'
+    a.extra_vars = {
+      :hostname => machine_hostname,
+      :listen_address => address
+    }
   end
-  
-  config.vm.provision "shell", path: "install-docker.sh"
-
-  config.vm.provision "shell", path: "install-docker-compose.sh"
-  
-  config.vm.provision "shell" do |script| 
-    script.path = "config-docker.sh"
-    script.env = {:LISTEN_ADDRESS => address}
-  end  
 
 end
 
