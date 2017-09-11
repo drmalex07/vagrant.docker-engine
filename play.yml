@@ -2,9 +2,9 @@
 - hosts: all
 
   vars:
-  
-    docker_compose_version: '1.16.1'
 
+    docker_compose_version: '1.16.1'
+   
   roles:
   - 'docker-engine'
 

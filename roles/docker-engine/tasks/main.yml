@@ -1,6 +1,7 @@
 ---
 
  - include: setup-hostname.yml
+   when: hostname is defined
  
  - include: install-prereqs.yml
  

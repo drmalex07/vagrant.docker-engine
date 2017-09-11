@@ -48,6 +48,7 @@ Vagrant.configure(2) do |config|
   config.vm.provision "shell", path: "configure-apt-proxy.sh"
   
   config.vm.provision "shell", path: "install-ansible-prereqs.sh"
+  
   config.vm.provision "ansible" do |a| 
     a.playbook = 'play.yml'
     a.extra_vars = {
